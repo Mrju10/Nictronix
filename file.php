@@ -1,17 +1,17 @@
 <?php
-$target_dir = "/var/www/files/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
+
+/* Get the name of the file uploaded to Apache */
+$filename = $_FILES['file']['name'];
+
+/* Prepare to save the file upload to the upload folder */
+$location = "var/www/files/".$filename;
+
+/* Permanently save the file upload to the upload folder */
+if ( move_uploaded_file($_FILES['file']['tmp_name'], $location) ) { 
+  echo '<p>The HTML5 and php file upload was a success!</p>'; 
+} else { 
+  echo '<p>The php and HTML5 file upload failed.</p>'; 
 }
+
+?>
 ?>
