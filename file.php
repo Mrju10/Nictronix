@@ -4,7 +4,7 @@
 $filename = $_FILES['file']['name'];
 
 /* Prepare to save the file upload to the upload folder */
-$location = "var/www/files/".$filename;
+$location = "var/www/html/files/".$filename;
 
 /* Permanently save the file upload to the upload folder */
 if ( move_uploaded_file($_FILES['file']['tmp_name'], $location) ) { 
